@@ -1,29 +1,13 @@
-apply plugin: 'groovy'
-
 version 0.9
 
-repositories {
-    ivy {
-        name 'GitHub'
-        url 'https://github.com/'
-        layout 'pattern', {
-            artifact 'psibre/[module]/releases/download/v[revision]/[module].[ext]'
-        }
-    }
+plugins {
+    id "de.undercouch.download" version "2.1.0"
 }
 
-configurations {
-    data
-}
+import de.undercouch.gradle.tasks.download.Download
 
-sourceSets {
-    data
-}
-
-dependencies {
-    data group: 'de.dfki.mary', name: project.name, version: project.version, ext: 'flac'
-}
-
-processDataResources {
-    from configurations.data
+task processDataResources(type: Download) {
+    src 'https://github.com/psibre/dfki-spike-data/releases/download/v0.9/dfki-spike-data.flac'
+    dest buildDir
+    overwrite false
 }
