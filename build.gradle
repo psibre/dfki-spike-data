@@ -1,0 +1,25 @@
+apply plugin: 'groovy'
+
+version 0.9
+
+repositories {
+    ivy {
+        name 'GitHub'
+        url 'https://github.com/'
+        layout 'pattern', {
+            artifact 'psibre/[module]/releases/download/v[revision]/[module].[ext]'
+        }
+    }
+}
+
+configurations {
+    data
+}
+
+sourceSets {
+    data
+}
+
+dependencies {
+    data group: 'de.dfki.mary', name: project.name, version: project.version, ext: 'flac'
+}
