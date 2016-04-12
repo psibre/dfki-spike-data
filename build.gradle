@@ -11,3 +11,21 @@ task processDataResources(type: Download) {
     dest buildDir
     overwrite false
 }
+
+task wav {
+    description 'extract WAV files from FLAC file, one per utterance in TextGrid file'
+    inputs.files files("$buildDir/dfki-spike-data.flac", 'dfki-spike-data.TextGrid')
+    outputs.dir "$buildDir/wav"
+}
+
+task text {
+    description 'extract text files from TextGrid file, one per utterance'
+    inputs.files file('dfki-spike-data.TextGrid')
+    outputs.dir "$buildDir/text"
+}
+
+task lab {
+    description 'extract label files from FLAC file, one per utterance'
+    inputs.files file('dfki-spike-data.TextGrid')
+    outputs.dir "$buildDir/lab"
+}
