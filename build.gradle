@@ -23,3 +23,7 @@ sourceSets {
 dependencies {
     data group: 'de.dfki.mary', name: project.name, version: project.version, ext: 'flac'
 }
+
+processDataResources {
+    from configurations.data
+}
